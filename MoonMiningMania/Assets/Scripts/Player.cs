@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     Vector3 playerDirection;
-    public float Max_Speed = 70.0f;
+    public float Max_Speed = 30.0f;
     private Rigidbody2D rgb2d; // Used for moving the charcter
 
     //Start is called at the beginning
