@@ -27,4 +27,10 @@ public class Asteroid : MonoBehaviour {
         asteroidVelocity =startingAsteroidVel;
         startingAngle = startingAsteroidAngle;
     }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "Moon")
+            Destroy(gameObject, 0f);
+    }
 }
