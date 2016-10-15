@@ -4,8 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     Vector3 playerDirection;
-    Vector3 playerVelocity;
-    static Vector3 Max_Velocity;
+    public float Max_Speed = 70.0f;
     private Rigidbody2D rgb2d; // Used for moving the charcter
 
     //Start is called at the beginning
@@ -13,23 +12,40 @@ public class Player : MonoBehaviour {
     {
         rgb2d = GetComponent<Rigidbody2D>();
         playerDirection = new Vector3(0.0f, 1.0f, 0.0f);
-        playerVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-        Max_Velocity = new Vector3(30.0f, 30.0f, 0.0f);
     }
 
-    //FixedUpdate is called for each Physics step
+    //Update is called every frame
     void FixedUpdate()
-    {
-        float rotateDirection = Input.GetAxis("Horizontal");
+    {       
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            playerDirection = Quaternion.Euler(0, 0, -5) * playerDirection;
+            playerDirection.Normalize();
+            transform.Rotate(new Vector3(0, 0, -5));
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            playerDirection = Quaternion.Euler(0, 0, +5) * playerDirection;
+            playerDirection.Normalize();
+            transform.Rotate(new Vector3(0, 0, +5));
+
+        }
+
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Vector3 force = playerDirection * 2;
 
-            if((playerVelocity + force).sqrMagnitude <= Max_Velocity.sqrMagnitude)
+            if((force + new Vector3(rgb2d.velocity.x, rgb2d.velocity.y, 0.0f)).magnitude <= Max_Speed)
             {
-                playerVelocity += force;
                 rgb2d.AddForce(force);
-            }  
+            }
+            else
+            {
+                rgb2d.AddForce(force);
+                rgb2d.AddForce(playerDirection * -2);
+            }
 
         }
     }
