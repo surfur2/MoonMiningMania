@@ -3,21 +3,28 @@ using System.Collections;
 
 public class Asteroid : MonoBehaviour {
 
-    public float asteroidVelocity;
-    public float startingAngle;
+    float asteroidVelocity;
+    float startingAngle;
 
     Rigidbody2D myRigidBody;
 
     // Use this for initialization
     void Start()
     {
-        float radians = (Mathf.PI * startingAngle / 180);
         myRigidBody = this.GetComponent<Rigidbody2D>();
-        myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * asteroidVelocity, (Mathf.Sin(radians) * asteroidVelocity), 0);
+
+        float radians = (Mathf.PI * startingAngle / 180);
+        myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * asteroidVelocity, Mathf.Sin(radians) * asteroidVelocity, 0);
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 	
 	}
+
+    public void InitializeAsteroid(float startingAsteroidVel, float startingAsteroidAngle)
+    {
+        asteroidVelocity =startingAsteroidVel;
+        startingAngle = startingAsteroidAngle;
+    }
 }
