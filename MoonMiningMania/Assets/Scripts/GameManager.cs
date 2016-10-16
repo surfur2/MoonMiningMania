@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour {
     public Text[] playerTextScores;
 
     private int[] playerScores;
-    private float minSpawnLocationAsteroid = .2f;
-    private float maxSpawnLocationAsteroid = .8f;
-    private float spreadOfAsteroidAngle = 30.0f;
-    private List<GameObject> asteroids;
+    private float minSpawnLocationAsteroid = .1f;
+    private float maxSpawnLocationAsteroid = .9f;
+    private float spreadOfAsteroidAngle = 160.0f;
+    private int asteroids;
     private List<GameObject> asteroidsGold;
     private float lastSpawnTime;
    
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
             instance = this;
         }
         lastSpawnTime = Time.time;
-        asteroids = new List<GameObject>();
+        asteroids = 0;
         asteroidsGold = new List<GameObject>();
         int players = gameObject.GetComponentsInChildren<Player>().Length;
         playerScores = new int[players];
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids.Count != totalNumberOfAsteroids)
+        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids != totalNumberOfAsteroids)
         {
             SpawnAsteroid(false);
             lastSpawnTime = Time.time;
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour {
         {
             GameObject newAsteroid = (GameObject)Instantiate(asteroidPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
             newAsteroid.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle);
-            asteroids.Add(newAsteroid);
+            asteroids++;
         }
         else
         {
@@ -112,6 +112,8 @@ public class GameManager : MonoBehaviour {
         int indexForPlayer = player - 1;
         playerScores[indexForPlayer] += score;
         playerTextScores[indexForPlayer].text = "Player " + player + " Score: " + playerScores[indexForPlayer];
+
+        asteroids--;
 
         if (playerScores[player - 1] >= scoreToWin)
         {
