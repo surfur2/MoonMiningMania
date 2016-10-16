@@ -75,7 +75,7 @@ GameObject:
   - 114: {fileID: 114000012643046016}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +200,9 @@ MonoBehaviour:
   GRAPPLE_COOLDOWN: 1
   EXTENSION_LENGTH: 2
   EXTENSION_DURATION: 0.25
+  hookState: 0
+  playerString: _P1
+  hookTarget: {fileID: 0}
   hookStart: {fileID: 1000011722897590}
   hookLine: {fileID: 1000010404924364}
   hookEnd: {fileID: 1000012338380276}
@@ -216,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Max_Speed: 3
   acceleration: 2
+  playerString: _P1
 --- !u!120 &120000013929873270
 LineRenderer:
   m_ObjectHideFlags: 1

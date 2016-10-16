@@ -13,6 +13,7 @@ public class HookShootScript : MonoBehaviour {
     private float cooldown;
     private float fireTimer;
     public int hookState;
+    public string playerString;
     private Vector3 originalHookLocalPosition;
     private SpringJoint2D tether;
 
@@ -47,7 +48,7 @@ public class HookShootScript : MonoBehaviour {
         switch (hookState)
         {
             case (HOOK_IN_CANNON):
-                if (cooldown <= 0 && Input.GetAxisRaw("Vertical_P1") == -1)
+                if (cooldown <= 0 && Input.GetButtonDown("Fire1" + playerString))
                 {
                     cooldown = GRAPPLE_COOLDOWN;
                     hookState = HOOK_FIRING;
@@ -87,7 +88,7 @@ public class HookShootScript : MonoBehaviour {
                 line.SetPosition(1, hookEnd.transform.position);
 
                 //Listen for disconnect or asteroid destruction
-                if (cooldown <= 0 && (Input.GetAxisRaw("Vertical_P1") == -1 || hookTarget == null))
+                if (cooldown <= 0 && (Input.GetButtonDown("Fire1" + playerString) || hookTarget == null))
                 {
                     tether.enabled = false;
                     tether.connectedBody = null;
@@ -115,8 +116,8 @@ public class HookShootScript : MonoBehaviour {
         if (hookTarget != null)
         {
             hookTarget.GetComponent<Asteroid>().isHooked = false;
-            hookTarget = null;
             hookTarget.gameObject.GetComponent<Rigidbody2D>().mass = 1.0f;
+            hookTarget = null;
         }
     }
 

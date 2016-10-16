@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000011648706704}
+  m_RootGameObject: {fileID: 1000013541692500}
   m_IsPrefabParent: 1
---- !u!1 &1000011648706704
+--- !u!1 &1000013541692500
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000010444878500}
-  - 212: {fileID: 212000012945397606}
-  - 114: {fileID: 114000011654087974}
-  - 50: {fileID: 50000012001798390}
-  - 60: {fileID: 60000010907592226}
+  - 4: {fileID: 4000010375717236}
+  - 212: {fileID: 212000014254004470}
+  - 114: {fileID: 114000011375653840}
+  - 50: {fileID: 50000013484577566}
+  - 60: {fileID: 60000011708502386}
   m_Layer: 8
-  m_Name: Asteroid
+  m_Name: AsteroidGold
   m_TagString: asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010444878500
+--- !u!4 &4000010375717236
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011648706704}
+  m_GameObject: {fileID: 1000013541692500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.25, y: -1.58, z: 0}
+  m_LocalPosition: {x: -1.97, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &50000012001798390
+--- !u!50 &50000013484577566
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011648706704}
+  m_GameObject: {fileID: 1000013541692500}
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -60,12 +60,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &60000010907592226
+--- !u!60 &60000011708502386
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011648706704}
+  m_GameObject: {fileID: 1000013541692500}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: f1c0a73d86c24f5469eb445fb43554e3, type: 2}
@@ -97,12 +97,12 @@ PolygonCollider2D:
       - {x: 0.18598509, y: 0.0034772158}
       - {x: 0.18410134, y: 0.08909893}
       - {x: 0.13583231, y: 0.1546768}
---- !u!114 &114000011654087974
+--- !u!114 &114000011375653840
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011648706704}
+  m_GameObject: {fileID: 1000013541692500}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7270d92b4f558d9498ac30c0fa751396, type: 3}
@@ -110,15 +110,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 1000013887906820, guid: c84888ac809cb0741a12b21dd7581158,
     type: 2}
-  goldSprite: {fileID: 21300000, guid: 7f39f7d129fcbe7489b50cdcc541bc1c, type: 3}
-  points: 1
   isHooked: 0
---- !u!212 &212000012945397606
+  points: 3
+--- !u!212 &212000014254004470
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011648706704}
+  m_GameObject: {fileID: 1000013541692500}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -142,7 +141,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dbb6a315959e12e479d1066d63ca6ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f39f7d129fcbe7489b50cdcc541bc1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
