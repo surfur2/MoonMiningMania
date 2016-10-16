@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 
     Vector3 playerDirection;
     public float Max_Speed = 5.0f;
-    public float moveSpeed = 0.0f;
+    public float acceleration;
     private Rigidbody2D rgb2d; // Used for moving the charcter
 
     //Start is called at the beginning
@@ -15,35 +15,24 @@ public class Player : MonoBehaviour {
         playerDirection = new Vector3(0.0f, 1.0f, 0.0f);
     }
 
-    //FixedUpdate is called for each Physics step
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetAxisRaw("Horizontal_P1") == 1)
         {
-            playerDirection = Quaternion.Euler(0, 0, -5) * playerDirection;
-            playerDirection.Normalize();
             transform.Rotate(new Vector3(0, 0, -5));
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetAxisRaw("Horizontal_P1") == -1)
         {
-            playerDirection = Quaternion.Euler(0, 0, +5) * playerDirection;
-            playerDirection.Normalize();
             transform.Rotate(new Vector3(0, 0, +5));
-
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetAxisRaw("Vertical_P1") == 1)
         {
-            Vector3 force = playerDirection * 2;
-
-            if ((force + new Vector3(rgb2d.velocity.x, rgb2d.velocity.y, 0.0f)).magnitude <= Max_Speed)
-            {
-                rgb2d.AddForce(force);
-                moveSpeed = rgb2d.velocity.magnitude;
-            }
+            if (rgb2d.velocity.magnitude <= Max_Speed)
+                rgb2d.velocity += new Vector2(transform.up.x * Time.deltaTime * acceleration, transform.up.y * Time.deltaTime * acceleration);
             else
             {
-                rgb2d.AddForce(force);
-                rgb2d.AddForce(playerDirection * -2);
+                Vector2 newVelocity = rgb2d.velocity + new Vector2(transform.up.x * Time.deltaTime * acceleration, transform.up.y * Time.deltaTime * acceleration);
+                rgb2d.velocity = newVelocity.normalized * Max_Speed;
             }
         }
     }
