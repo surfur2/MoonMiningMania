@@ -48,7 +48,7 @@ public class HookShootScript : MonoBehaviour {
         switch (hookState)
         {
             case (HOOK_IN_CANNON):
-                if (cooldown <= 0 && Input.GetButtonDown("Fire1" + playerString))
+                if (cooldown <= 0 && Input.GetAxisRaw("Fire1" + playerString) == -1)
                 {
                     cooldown = GRAPPLE_COOLDOWN;
                     hookState = HOOK_FIRING;
@@ -88,7 +88,7 @@ public class HookShootScript : MonoBehaviour {
                 line.SetPosition(1, hookEnd.transform.position);
 
                 //Listen for disconnect or asteroid destruction
-                if (cooldown <= 0 && (Input.GetButtonDown("Fire1" + playerString) || hookTarget == null))
+                if (cooldown <= 0 && (Input.GetAxisRaw("Fire1" + playerString) == -1 || hookTarget == null))
                 {
                     tether.enabled = false;
                     tether.connectedBody = null;
