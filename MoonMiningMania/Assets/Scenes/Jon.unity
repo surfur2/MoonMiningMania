@@ -163,10 +163,10 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Smash Asteroid into the moon while its above your flag to collect points!\n\nController:
-    Left, Right to steer, A to thrust, Right trigger to grapple\n\nKeyboard:\nP1 -
-    A + D to steer, W to thrust, LeftCtrl to grapple\nP2 - Left + Right to steer,
-    Up to thrust, RightCtrl to grapple\nP3 - J + L to steer, I to thrust, Space to
-    grapple\n "
+    Left, Right to steer, A to thrust, Right trigger to grapple\nWARNING: if controllers
+    aren't working, unplug and plug back in one by one\n\nKeyboard:\nP1 - A + D to
+    steer, W to thrust, LeftCtrl to grapple\nP2 - Left + Right to steer, Up to thrust,
+    RightCtrl to grapple\nP3 - J + L to steer, I to thrust, Space to grapple\n "
 --- !u!222 &180993744
 CanvasRenderer:
   m_ObjectHideFlags: 0
