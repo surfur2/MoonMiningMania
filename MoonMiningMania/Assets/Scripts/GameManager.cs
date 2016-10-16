@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour {
     public int timeBetweenAsteroidSpawns;
     public GameObject asteroidPrefab;
     public int maxSpeedOfAsteroids;
+    [SerializeField]
+    public static int scoreToWin = 10;
 
+    private static int[] playerScores;
     private float minSpawnLocationAsteroid = .2f;
     private float maxSpawnLocationAsteroid = .8f;
     private float spreadOfAsteroidAngle = 30.0f;
@@ -19,6 +22,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         lastSpawnTime = Time.time;
         asteroids = new List<GameObject>();
+        int players = gameObject.GetComponentsInChildren<Player>().Length;
+        playerScores = new int[players];
 	}
 	
 	// Update is called once per frame
@@ -66,5 +71,20 @@ public class GameManager : MonoBehaviour {
         GameObject newAsteroid = (GameObject)Instantiate(asteroidPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
         newAsteroid.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle);
         asteroids.Add(newAsteroid);
+    }
+
+    public static void AddPointsForPlayer(int player, int score)
+    {
+        playerScores[player - 1] += score;
+
+        if (playerScores[player - 1] >= scoreToWin)
+        {
+            GameOver(player);
+        }
+    }
+
+    static void GameOver(int player)
+    {
+        Time.timeScale = 0.0f;
     }
 }
