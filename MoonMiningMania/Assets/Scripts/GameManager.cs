@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
     public Sprite[] shipSprites;
     public Sprite[] worldSprites;
+    public string sceneName;
     [HideInInspector]
     public int players;
 
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour {
         lastSpawnTime = Time.time;
         asteroids = 0;
         asteroidsGold = 0;
+
+        Time.timeScale = 1.0f;
 
         sound = GetComponent<AudioSource>();
 
@@ -241,5 +245,9 @@ public class GameManager : MonoBehaviour {
             gameOverText.text += playerTextScores[i].text + "\n";
 
         gameOverPanel.SetActive(true);
+
+        Destroy(instance);
+
+        SceneManager.LoadScene(sceneName);
     }
 }
