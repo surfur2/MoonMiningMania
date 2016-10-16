@@ -5,6 +5,7 @@ public class WrappingObject : MonoBehaviour {
 
     public float screenOffSet;
     public float objectBufferOffSet;
+    public float extraSizePercentage;
     public string side;
     public WrappingObject minX;
     public WrappingObject maxX;
@@ -25,7 +26,7 @@ public class WrappingObject : MonoBehaviour {
             sizeOfCollider = Mathf.Abs(upperLeftCorner.y - lowerLeftCorner.y);
 
             gameObject.transform.position = new Vector3(lowerLeftCorner.x - screenOffSet, (sizeOfCollider/2.0f) + lowerLeftCorner.y , 0);
-            myBoxCollider.size = new Vector2(myBoxCollider.size.x, sizeOfCollider);
+            myBoxCollider.size = new Vector2(myBoxCollider.size.x, sizeOfCollider + (sizeOfCollider * extraSizePercentage));
         }
         else if (side.ToLower() == "maxx")
         {
@@ -34,7 +35,7 @@ public class WrappingObject : MonoBehaviour {
             sizeOfCollider = Mathf.Abs(upperRightCorner.y - lowerRightCorner.y);
 
             gameObject.transform.position = new Vector3(lowerRightCorner.x + screenOffSet, (sizeOfCollider / 2.0f) + lowerRightCorner.y, 0);
-            myBoxCollider.size = new Vector2(myBoxCollider.size.x, sizeOfCollider);
+            myBoxCollider.size = new Vector2(myBoxCollider.size.x, sizeOfCollider + (sizeOfCollider * extraSizePercentage));
         }
         else if (side.ToLower() == "miny")
         {
@@ -43,7 +44,7 @@ public class WrappingObject : MonoBehaviour {
             sizeOfCollider = Mathf.Abs(lowerRightCorner.x - lowerLeftCorner.x);
 
             gameObject.transform.position = new Vector3((sizeOfCollider / 2.0f) + lowerLeftCorner.x, lowerRightCorner.y - screenOffSet, 0);
-            myBoxCollider.size = new Vector2(sizeOfCollider, myBoxCollider.size.y);
+            myBoxCollider.size = new Vector2(sizeOfCollider + (sizeOfCollider * extraSizePercentage), myBoxCollider.size.y);
         }
         else if (side.ToLower() == "maxy")
         {
@@ -52,7 +53,7 @@ public class WrappingObject : MonoBehaviour {
             sizeOfCollider = Mathf.Abs(upperRightCorner.x - upperLeftCorner.x);
 
             gameObject.transform.position = new Vector3((sizeOfCollider / 2.0f) + upperLeftCorner.x, upperRightCorner.y + screenOffSet, 0);
-            myBoxCollider.size = new Vector2(sizeOfCollider, myBoxCollider.size.y);
+            myBoxCollider.size = new Vector2(sizeOfCollider + (sizeOfCollider * extraSizePercentage), myBoxCollider.size.y);
         }
     }
 

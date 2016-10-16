@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenOffSet: 0.7
   objectBufferOffSet: 0.5
+  extraSizePercentage: 0.1
   side: minx
   minX: {fileID: 114000010321333768}
   maxX: {fileID: 0}
