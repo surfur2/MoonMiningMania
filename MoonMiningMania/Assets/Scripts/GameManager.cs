@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance { get { return instance; } }
 
     public int totalNumberOfAsteroids;
+    public int totalNumberOfGoldenAsteroids;
     public int timeBetweenAsteroidSpawns;
     public GameObject asteroidPrefab;
     public int maxSpeedOfAsteroids;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour {
     private float maxSpawnLocationAsteroid = .8f;
     private float spreadOfAsteroidAngle = 30.0f;
     private List<GameObject> asteroids;
+    private List<GameObject> asteroidsGold;
     private float lastSpawnTime;
    
 	// Use this for initialization
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour {
         }
         lastSpawnTime = Time.time;
         asteroids = new List<GameObject>();
+        asteroidsGold = new List<GameObject>();
         int players = gameObject.GetComponentsInChildren<Player>().Length;
         playerScores = new int[players];
         for (int i = 0; i < players; i++)
@@ -47,12 +50,17 @@ public class GameManager : MonoBehaviour {
 
         if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids.Count != totalNumberOfAsteroids)
         {
-            SpawnAsteroid();
+            SpawnAsteroid(false);
             lastSpawnTime = Time.time;
         }
-	}
+        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroidsGold.Count != totalNumberOfGoldenAsteroids)
+        {
+            SpawnAsteroid(true);
+            lastSpawnTime = Time.time;
+        }
+    }
 
-    void SpawnAsteroid()
+    void SpawnAsteroid(bool isGolden)
     {
         int side = Random.Range(1, 5);
         float startingAngle;
@@ -84,9 +92,19 @@ public class GameManager : MonoBehaviour {
         }
         spawnLocation = Camera.main.ViewportToWorldPoint(spawnLocation);
         spawnLocation.z = 0;
-        GameObject newAsteroid = (GameObject)Instantiate(asteroidPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
-        newAsteroid.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle);
-        asteroids.Add(newAsteroid);
+        
+        if (!isGolden)
+        {
+            GameObject newAsteroid = (GameObject)Instantiate(asteroidPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
+            newAsteroid.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle);
+            asteroids.Add(newAsteroid);
+        }
+        else
+        {
+            GameObject newAsteroid = (GameObject)Instantiate(asteroidPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
+            newAsteroid.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle, true);
+            asteroidsGold.Add(newAsteroid);
+        }
     }
 
     public void AddPointsForPlayer(int player, int score)

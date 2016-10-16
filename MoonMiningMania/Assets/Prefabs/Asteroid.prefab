@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 1000013887906820, guid: c84888ac809cb0741a12b21dd7581158,
     type: 2}
+  goldSprite: {fileID: 21300000, guid: 7f39f7d129fcbe7489b50cdcc541bc1c, type: 3}
   points: 1
 --- !u!212 &212000012945397606
 SpriteRenderer:
