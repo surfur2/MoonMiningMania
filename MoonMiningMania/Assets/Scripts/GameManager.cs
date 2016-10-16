@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public int totalNumberOfAsteroids;
     public int totalNumberOfGoldenAsteroids;
     public int timeBetweenAsteroidSpawns;
+    public int timeBetweenAsteroidSpawnsGold;
     public GameObject asteroidPrefab;
     public GameObject asteroidGoldPrefab;
     public int maxSpeedOfAsteroids;
@@ -35,8 +36,9 @@ public class GameManager : MonoBehaviour {
     private float asteroidSpawnDeadZone = 120.0f;
     private float asteroidSpawnBuffer = 10.0f;
     private int asteroids;
-    private int asteroidsGold;
+    public int asteroidsGold;
     private float lastSpawnTime;
+    public float lastDestroyedTimeGold;
     private AudioSource sound;
 
     private bool gameStarted = false;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour {
         }
         gameOverPanel.SetActive(false);
         lastSpawnTime = Time.time;
+        lastDestroyedTimeGold = Time.time + 5.0f;
         asteroids = 0;
         asteroidsGold = 0;
 
@@ -71,10 +74,10 @@ public class GameManager : MonoBehaviour {
                 SpawnAsteroid(false);
                 lastSpawnTime = Time.time;
             }
-            if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroidsGold != totalNumberOfGoldenAsteroids)
-            {
-                SpawnAsteroid(true);
-                lastSpawnTime = Time.time;
+        if (lastDestroyedTimeGold + timeBetweenAsteroidSpawnsGold < Time.time && asteroidsGold != totalNumberOfGoldenAsteroids)
+        {
+            SpawnAsteroid(true);
+            lastDestroyedTimeGold = Time.time;
             }
         }
 

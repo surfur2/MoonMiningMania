@@ -40,6 +40,13 @@ public class Asteroid : MonoBehaviour {
         {
             Destroy(gameObject, 0f);
 
+            if (points == 3)
+            {
+                GameManager.Instance.asteroidsGold--;
+                GameManager.Instance.lastDestroyedTimeGold = Time.time;
+            }
+
+
             GameObject newParticle = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
 
             if (GameManager.Instance.players == 2)
