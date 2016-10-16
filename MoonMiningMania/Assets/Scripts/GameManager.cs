@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
     public Sprite[] shipSprites;
     public Sprite[] worldSprites;
+    [HideInInspector]
+    public int players;
+
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -48,14 +51,6 @@ public class GameManager : MonoBehaviour {
         lastSpawnTime = Time.time;
         asteroids = 0;
         asteroidsGold = 0;
-        int players = gameObject.GetComponentsInChildren<Player>().Length;
-        playerScores = new int[players];
-        for (int i = 0; i < players; i++)
-        {
-            playerScores[i] = 0;
-            playerTextScores[i].gameObject.SetActive(true);
-            playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
-        }
 
         sound = GetComponent<AudioSource>();
 
@@ -197,6 +192,15 @@ public class GameManager : MonoBehaviour {
         if (numPlayers == 2) earthGraphic.GetComponent<SpriteRenderer>().sprite = worldSprites[0];
         else if (numPlayers == 3) earthGraphic.GetComponent<SpriteRenderer>().sprite = worldSprites[1];
 
+        players = numPlayers;
+        playerScores = new int[players];
+        for (int i = 0; i < players; i++)
+        {
+            playerScores[i] = 0;
+            playerTextScores[i].gameObject.SetActive(true);
+            playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
+        }
+
 
         //Set up anything else important for the change
     }
@@ -212,9 +216,9 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            if (playerNumber == 1) playerPosition = new Vector3(2, 2, 0);
-            else if (playerNumber == 2) playerPosition = new Vector3(-2, 2, 0);
-            else playerPosition = new Vector3(0, -2.4f, 0);
+            if (playerNumber == 1) playerPosition = new Vector3(-2, 2, 0);
+            else if (playerNumber == 2) playerPosition = new Vector3(0, -2.4f, 0);
+            else playerPosition = new Vector3(2, 2, 0);
         }
 
         //Make ship
@@ -222,6 +226,7 @@ public class GameManager : MonoBehaviour {
 
         //Set ship by playerNumber
         newPlayer.GetComponent<Player>().playerString = "_P" + playerNumber;
+        newPlayer.GetComponent<HookShootScript>().playerString = "_P" + playerNumber;
         newPlayer.GetComponent<SpriteRenderer>().sprite = shipSprites[playerNumber - 1];
 
     }

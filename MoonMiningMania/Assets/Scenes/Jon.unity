@@ -996,6 +996,22 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.08235294
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013421780550, guid: c4efaaca361288d4385849079f9c69d4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011547404692, guid: c4efaaca361288d4385849079f9c69d4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010448654614, guid: c4efaaca361288d4385849079f9c69d4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013041281776, guid: c4efaaca361288d4385849079f9c69d4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4efaaca361288d4385849079f9c69d4, type: 2}
   m_IsPrefabParent: 0
@@ -1887,7 +1903,7 @@ MonoBehaviour:
   asteroidGoldPrefab: {fileID: 1000013541692500, guid: 3579cd7effe65154c87be899f6921a31,
     type: 2}
   maxSpeedOfAsteroids: 1
-  scoreToWin: 1
+  scoreToWin: 10
   playerTextScores:
   - {fileID: 874642548}
   - {fileID: 874642547}
@@ -1903,6 +1919,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 09108ea9625e5d0429f9f9554c1c9c01, type: 3}
   - {fileID: 21300000, guid: d4e678bf2a5728d40a66a8fcf883168a, type: 3}
   - {fileID: 21300000, guid: d0ca64f0035938b418a8f159fe4998b3, type: 3}
+  worldSprites:
+  - {fileID: 21300000, guid: 61ba552f7c1532b4ba2b0653ebe6008c, type: 3}
+  - {fileID: 21300000, guid: ddcb0fdf62d1f2d468fa02caa7e49f6e, type: 3}
+  players: 0
 --- !u!1 &2145772509
 GameObject:
   m_ObjectHideFlags: 0
