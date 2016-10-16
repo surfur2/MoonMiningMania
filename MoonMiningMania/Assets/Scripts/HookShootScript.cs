@@ -85,7 +85,7 @@ public class HookShootScript : MonoBehaviour {
                 line.SetPosition(1, hookEnd.transform.position);
 
                 //Listen for disconnect or asteroid destruction
-                if (cooldown <= 0 && (Input.GetAxisRaw("Vertical") == -1 || hookTarget == null))
+                if (cooldown <= 0 && (Input.GetAxisRaw("Vertical_P1") == -1 || hookTarget == null))
                 {
                     tether.enabled = false;
                     tether.connectedBody = null;

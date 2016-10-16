@@ -614,6 +614,11 @@ Prefab:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 29152282}
+    - target: {fileID: 114000013202568800, guid: fbf3d321d6e93b34692dac5927a18fe7,
+        type: 2}
+      propertyPath: acceleration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbf3d321d6e93b34692dac5927a18fe7, type: 2}
   m_IsPrefabParent: 0
