@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
     public Text[] playerTextScores;
     public GameObject gameOverPanel;
     public AudioClip scoreSound;
+    [HideInInspector]
+    public int players;
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour {
         lastSpawnTime = Time.time;
         asteroids = 0;
         asteroidsGold = 0;
-        int players = gameObject.GetComponentsInChildren<Player>().Length;
+        players = gameObject.GetComponentsInChildren<Player>().Length;
         playerScores = new int[players];
         for (int i = 0; i < players; i++)
         {

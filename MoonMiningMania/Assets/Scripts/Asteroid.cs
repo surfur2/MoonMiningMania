@@ -42,23 +42,54 @@ public class Asteroid : MonoBehaviour {
 
             GameObject newParticle = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
 
-            if (coll.gameObject.transform.position.x > 0)
-            {
-                for(int i = 0; i < points; i++)
+            if (GameManager.Instance.players == 2)
+                if (coll.gameObject.transform.position.x > 0)
                 {
-                    newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
-                    newParticles[i].GetComponent<Particle>().InitializeParticle(1);
+                    for(int i = 0; i < points; i++)
+                    {
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+                        newParticles[i].GetComponent<Particle>().InitializeParticle(1);
+                    }
+                    GameManager.Instance.AddPointsForPlayer(1, points);
                 }
-                GameManager.Instance.AddPointsForPlayer(1, points);
-            }
-            else
-            {
-                for (int i = 0; i < points; i++)
+                else
                 {
-                    newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i*0.1f, 0, 0), Quaternion.identity) as GameObject;
-                    newParticles[i].GetComponent<Particle>().InitializeParticle(2);
+                    for (int i = 0; i < points; i++)
+                    {
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i*0.1f, 0, 0), Quaternion.identity) as GameObject;
+                        newParticles[i].GetComponent<Particle>().InitializeParticle(2);
+                    }
+                    GameManager.Instance.AddPointsForPlayer(2, points);
                 }
-                GameManager.Instance.AddPointsForPlayer(2, points);
+            else if (GameManager.Instance.players == 3)
+            {
+                if (coll.gameObject.transform.position.y <= -.87)
+                {
+                    for (int i = 0; i < points; i++)
+                    {
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+                        newParticles[i].GetComponent<Particle>().InitializeParticle(3);
+                    }
+                    GameManager.Instance.AddPointsForPlayer(3, points);
+                }
+                else if (coll.gameObject.transform.position.x < 0)
+                {
+                    for (int i = 0; i < points; i++)
+                    {
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i * 0.1f, 0, 0), Quaternion.identity) as GameObject;
+                        newParticles[i].GetComponent<Particle>().InitializeParticle(2);
+                    }
+                    GameManager.Instance.AddPointsForPlayer(2, points);
+                }
+                else if (coll.gameObject.transform.position.x >= 0)
+                {
+                    for (int i = 0; i < points; i++)
+                    {
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i * 0.1f, 0, 0), Quaternion.identity) as GameObject;
+                        newParticles[i].GetComponent<Particle>().InitializeParticle(1);
+                    }
+                    GameManager.Instance.AddPointsForPlayer(1, points);
+                }
             }
         }
     }

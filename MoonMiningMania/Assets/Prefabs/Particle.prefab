@@ -55,7 +55,7 @@ MonoBehaviour:
   sprite:
   - {fileID: 21300000, guid: b5c8330e6fd3c1442a6769652f08ae95, type: 3}
   - {fileID: 21300000, guid: bdd94e9f34f856d4bb340ab592dd10a5, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: cee44c6fcfc689543986919e654d8076, type: 3}
   - {fileID: 0}
   targetLocation: {x: 0, y: 0, z: 0}
 --- !u!212 &212000011572396924
