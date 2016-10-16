@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
+
+    private static GameManager instance = null;
+    public static GameManager Instance { get { return instance; } }
 
     public int totalNumberOfAsteroids;
     public int timeBetweenAsteroidSpawns;
     public GameObject asteroidPrefab;
     public int maxSpeedOfAsteroids;
-    [SerializeField]
-    public static int scoreToWin = 10;
+    public int scoreToWin = 10;
+    public Text[] playerTextScores;
 
-    private static int[] playerScores;
+    private int[] playerScores;
     private float minSpawnLocationAsteroid = .2f;
     private float maxSpawnLocationAsteroid = .8f;
     private float spreadOfAsteroidAngle = 30.0f;
@@ -20,10 +24,22 @@ public class GameManager : MonoBehaviour {
    
 	// Use this for initialization
 	void Start () {
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+        else
+        {
+            instance = this;
+        }
         lastSpawnTime = Time.time;
         asteroids = new List<GameObject>();
         int players = gameObject.GetComponentsInChildren<Player>().Length;
         playerScores = new int[players];
+        for (int i = 0; i < players; i++)
+        {
+            playerScores[i] = 0;
+            playerTextScores[i].gameObject.SetActive(true);
+            playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
+        }
 	}
 	
 	// Update is called once per frame
@@ -73,9 +89,11 @@ public class GameManager : MonoBehaviour {
         asteroids.Add(newAsteroid);
     }
 
-    public static void AddPointsForPlayer(int player, int score)
+    public void AddPointsForPlayer(int player, int score)
     {
-        playerScores[player - 1] += score;
+        int indexForPlayer = player - 1;
+        playerScores[indexForPlayer] += score;
+        playerTextScores[indexForPlayer].text = "Player " + player + " Score: " + playerScores[indexForPlayer];
 
         if (playerScores[player - 1] >= scoreToWin)
         {
@@ -83,7 +101,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    static void GameOver(int player)
+    void GameOver(int player)
     {
         Time.timeScale = 0.0f;
     }

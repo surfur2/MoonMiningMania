@@ -5,6 +5,7 @@ public class Asteroid : MonoBehaviour {
 
     float asteroidVelocity;
     float startingAngle;
+    public GameObject particleBar;
 
     Rigidbody2D myRigidBody;
 
@@ -31,6 +32,10 @@ public class Asteroid : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.name == "Moon")
+        {
             Destroy(gameObject, 0f);
+            GameObject pBar = Instantiate(particleBar, this.transform.position, Quaternion.identity) as GameObject;
+            Particle pBarParticle = pBar.GetComponent<Particle>();
+        }
     }
 }
