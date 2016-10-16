@@ -114,9 +114,9 @@ public class HookShootScript : MonoBehaviour {
         hook.transform.DOLocalMove(originalHookLocalPosition, EXTENSION_DURATION / 2).OnComplete(setHookToInCannon);
         if (hookTarget != null)
         {
-            hookTarget.GetComponent<Asteroid>().isHooked = false;
-            hookTarget = null;
+            hookTarget.GetComponent<Asteroid>().isHooked = false;            
             hookTarget.gameObject.GetComponent<Rigidbody2D>().mass = 1.0f;
+            hookTarget = null;
         }
     }
 

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public int totalNumberOfGoldenAsteroids;
     public int timeBetweenAsteroidSpawns;
     public GameObject asteroidPrefab;
+    public GameObject asteroidGoldPrefab;
     public int maxSpeedOfAsteroids;
     public int scoreToWin = 10;
     public Text[] playerTextScores;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour {
     private float maxSpawnLocationAsteroid = .9f;
     private float spreadOfAsteroidAngle = 160.0f;
     private int asteroids;
-    private List<GameObject> asteroidsGold;
+    private int asteroidsGold;
     private float lastSpawnTime;
    
 	// Use this for initialization
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour {
         }
         lastSpawnTime = Time.time;
         asteroids = 0;
-        asteroidsGold = new List<GameObject>();
+        asteroidsGold = 0;
         int players = gameObject.GetComponentsInChildren<Player>().Length;
         playerScores = new int[players];
         for (int i = 0; i < players; i++)
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour {
             SpawnAsteroid(false);
             lastSpawnTime = Time.time;
         }
-        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroidsGold.Count != totalNumberOfGoldenAsteroids)
+        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroidsGold != totalNumberOfGoldenAsteroids)
         {
             SpawnAsteroid(true);
             lastSpawnTime = Time.time;
@@ -101,9 +102,9 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            GameObject newAsteroid = (GameObject)Instantiate(asteroidPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
-            newAsteroid.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle, true);
-            asteroidsGold.Add(newAsteroid);
+            GameObject newAsteroidGold = (GameObject)Instantiate(asteroidGoldPrefab, spawnLocation, Quaternion.Euler(0, 180, 0));
+            newAsteroidGold.GetComponent<Asteroid>().InitializeAsteroid(maxSpeedOfAsteroids, startingAngle);
+            asteroidsGold++;
         }
     }
 

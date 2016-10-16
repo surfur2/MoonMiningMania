@@ -7,9 +7,7 @@ public class Asteroid : MonoBehaviour {
     float asteroidVelocity;
     float startingAngle;
     public GameObject particlePrefab;
-    private GameObject[] particles;
     public bool isHooked;
-    public Sprite goldSprite;
     public int points = 1;
 
     Rigidbody2D myRigidBody;
@@ -28,16 +26,10 @@ public class Asteroid : MonoBehaviour {
 	
 	}
 
-    public void InitializeAsteroid(float startingAsteroidVel, float startingAsteroidAngle, bool isGolden = false)
+    public void InitializeAsteroid(float startingAsteroidVel, float startingAsteroidAngle)
     {
         asteroidVelocity =startingAsteroidVel;
         startingAngle = startingAsteroidAngle;
-        if (isGolden)
-        {
-            GetComponent<SpriteRenderer>().sprite = goldSprite;
-            points = 3;
-        }
-        particles = new GameObject[points];
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -46,23 +38,17 @@ public class Asteroid : MonoBehaviour {
         {
             Destroy(gameObject, 0f);
 
+            GameObject newParticle = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+
             if (coll.gameObject.transform.position.x > 0)
             {
+                newParticle.GetComponent<Particle>().InitializeParticle(1);
                 GameManager.Instance.AddPointsForPlayer(1, points);
-                for (int i = 0; i < points; i++)
-                {
-                    particles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
-                    particles[i].GetComponent<Particle>().InitializeParticle(1);
-                }
             }
             else
             {
+                newParticle.GetComponent<Particle>().InitializeParticle(2);
                 GameManager.Instance.AddPointsForPlayer(2, points);
-                for (int i = 0; i < points; i++)
-                {
-                    particles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
-                    particles[i].GetComponent<Particle>().InitializeParticle(2);
-                }
             }
         }
     }
