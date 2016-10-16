@@ -73,6 +73,7 @@ GameObject:
   - 60: {fileID: 60000012714242730}
   - 231: {fileID: 231000013670548454}
   - 114: {fileID: 114000012643046016}
+  - 82: {fileID: 82000011998152248}
   m_Layer: 0
   m_Name: Player
   m_TagString: player
@@ -172,6 +173,80 @@ PolygonCollider2D:
       - {x: 0.14828762, y: -0.23335233}
       - {x: 0.24336001, y: -0.1267694}
       - {x: 0.048300788, y: 0.17572756}
+--- !u!82 &82000011998152248
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013963512596}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114000011084617450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,6 +281,9 @@ MonoBehaviour:
   hookStart: {fileID: 1000011722897590}
   hookLine: {fileID: 1000010404924364}
   hookEnd: {fileID: 1000012338380276}
+  hookShootSound: {fileID: 8300000, guid: e0342161fe7542349af81dda4bd69a0d, type: 3}
+  hookGrabSound: {fileID: 8300000, guid: 83a783f3c1d74f54283bd993c9db7079, type: 3}
+  hookReleaseSound: {fileID: 8300000, guid: b6cf2aa71ac0f3a47aa1c8b04ed6f9f5, type: 3}
 --- !u!114 &114000013202568800
 MonoBehaviour:
   m_ObjectHideFlags: 1
