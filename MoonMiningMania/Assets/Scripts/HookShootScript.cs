@@ -47,7 +47,7 @@ public class HookShootScript : MonoBehaviour {
         switch (hookState)
         {
             case (HOOK_IN_CANNON):
-                if (cooldown <= 0 && Input.GetAxisRaw("Vertical") == -1)
+                if (cooldown <= 0 && Input.GetAxisRaw("Vertical_P1") == -1)
                 {
                     cooldown = GRAPPLE_COOLDOWN;
                     hookState = HOOK_FIRING;
