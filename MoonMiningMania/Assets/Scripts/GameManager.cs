@@ -63,13 +63,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!gameStarted)
-        {
-            //HANDLE START SCREEN
-            if (Input.GetKeyDown(KeyCode.Alpha2)) StartGame(2);
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) StartGame(3);
-        }
-        else
+        if (gameStarted)
         {
             //HANDLE ASTEROIDS
             if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids != totalNumberOfAsteroids)
@@ -184,7 +178,7 @@ public class GameManager : MonoBehaviour {
         sound.PlayOneShot(scoreSound);
     }
 
-    void StartGame(int numPlayers)
+    public void StartGame(int numPlayers)
     {
         startScreen.SetActive(false);
         gameStarted = true;
@@ -244,8 +238,11 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < playerScores.Length; i++)
             gameOverText.text += playerTextScores[i].text + "\n";
 
-        gameOverPanel.SetActive(true);
+        gameOverPanel.SetActive(true);  
+    }
 
+    public void ResetScene ()
+    {
         Destroy(instance);
 
         SceneManager.LoadScene(sceneName);
