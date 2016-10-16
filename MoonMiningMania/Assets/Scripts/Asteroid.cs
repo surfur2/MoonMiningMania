@@ -5,7 +5,8 @@ public class Asteroid : MonoBehaviour {
 
     float asteroidVelocity;
     float startingAngle;
-    public GameObject particleBar;
+    public GameObject particlePrefab;
+    public float points = 1.0f;
 
     Rigidbody2D myRigidBody;
 
@@ -13,7 +14,6 @@ public class Asteroid : MonoBehaviour {
     void Start()
     {
         myRigidBody = this.GetComponent<Rigidbody2D>();
-
         float radians = (Mathf.PI * startingAngle / 180);
         myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * asteroidVelocity, Mathf.Sin(radians) * asteroidVelocity, 0);
     }
@@ -34,8 +34,19 @@ public class Asteroid : MonoBehaviour {
         if (coll.gameObject.name == "Moon")
         {
             Destroy(gameObject, 0f);
-            GameObject pBar = Instantiate(particleBar, this.transform.position, Quaternion.identity) as GameObject;
-            Particle pBarParticle = pBar.GetComponent<Particle>();
+
+            GameObject newParticle = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+
+            if (coll.gameObject.transform.position.x > 0)
+            {
+                GameManager.Instance.AddPointsForPlayer(1, (int)points);
+                newParticle.GetComponent<Particle>().InitializeParticle(1);
+            }
+            else
+            {
+                GameManager.Instance.AddPointsForPlayer(2, (int)points);
+                newParticle.GetComponent<Particle>().InitializeParticle(2);
+            }
         }
     }
 }
