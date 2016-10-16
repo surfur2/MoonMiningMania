@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,8 +20,15 @@ public class GameManager : MonoBehaviour {
     public Text[] playerTextScores;
     public GameObject gameOverPanel;
     public AudioClip scoreSound;
+    public GameObject startScreen;
+    public GameObject earthGraphic;
+    public GameObject playerPrefab;
+    public Sprite[] shipSprites;
+    public Sprite[] worldSprites;
+    public string sceneName;
     [HideInInspector]
     public int players;
+
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -32,6 +40,8 @@ public class GameManager : MonoBehaviour {
     private float lastSpawnTime;
     public float lastDestroyedTimeGold;
     private AudioSource sound;
+
+    private bool gameStarted = false;
    
 	// Use this for initialization
 	void Start () {
@@ -46,31 +56,32 @@ public class GameManager : MonoBehaviour {
         lastDestroyedTimeGold = Time.time + 5.0f;
         asteroids = 0;
         asteroidsGold = 0;
-        players = gameObject.GetComponentsInChildren<Player>().Length;
-        playerScores = new int[players];
-        for (int i = 0; i < players; i++)
-        {
-            playerScores[i] = 0;
-            playerTextScores[i].gameObject.SetActive(true);
-            playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
-        }
+
+        Time.timeScale = 1.0f;
 
         sound = GetComponent<AudioSource>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids != totalNumberOfAsteroids)
+        if (gameStarted)
         {
-            SpawnAsteroid(false);
-            lastSpawnTime = Time.time;
-        }
+            //HANDLE ASTEROIDS
+            if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids != totalNumberOfAsteroids)
+            {
+                SpawnAsteroid(false);
+                lastSpawnTime = Time.time;
+            }
         if (lastDestroyedTimeGold + timeBetweenAsteroidSpawnsGold < Time.time && asteroidsGold != totalNumberOfGoldenAsteroids)
         {
             SpawnAsteroid(true);
             lastDestroyedTimeGold = Time.time;
+            }
         }
+
+        
     }
 
     void SpawnAsteroid(bool isGolden)
@@ -170,6 +181,57 @@ public class GameManager : MonoBehaviour {
         sound.PlayOneShot(scoreSound);
     }
 
+    public void StartGame(int numPlayers)
+    {
+        startScreen.SetActive(false);
+        gameStarted = true;
+
+        makeShip(1, numPlayers);
+        makeShip(2, numPlayers);
+        if (numPlayers > 2) makeShip(3, numPlayers);
+
+        if (numPlayers == 2) earthGraphic.GetComponent<SpriteRenderer>().sprite = worldSprites[0];
+        else if (numPlayers == 3) earthGraphic.GetComponent<SpriteRenderer>().sprite = worldSprites[1];
+
+        players = numPlayers;
+        playerScores = new int[players];
+        for (int i = 0; i < players; i++)
+        {
+            playerScores[i] = 0;
+            playerTextScores[i].gameObject.SetActive(true);
+            playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
+        }
+
+
+        //Set up anything else important for the change
+    }
+
+    void makeShip(int playerNumber, int maxPlayers)
+    {
+        //Decide starting position
+        Vector3 playerPosition;
+        if(maxPlayers == 2)
+        {
+            if (playerNumber == 1) playerPosition = new Vector3(-2.5f, 0, 0);
+            else playerPosition = new Vector3(2.5f, 0, 0);
+        }
+        else
+        {
+            if (playerNumber == 1) playerPosition = new Vector3(-2, 2, 0);
+            else if (playerNumber == 2) playerPosition = new Vector3(0, -2.4f, 0);
+            else playerPosition = new Vector3(2, 2, 0);
+        }
+
+        //Make ship
+        GameObject newPlayer = (GameObject)Instantiate(playerPrefab, playerPosition, Quaternion.identity);
+
+        //Set ship by playerNumber
+        newPlayer.GetComponent<Player>().playerString = "_P" + playerNumber;
+        newPlayer.GetComponent<HookShootScript>().playerString = "_P" + playerNumber;
+        newPlayer.GetComponent<SpriteRenderer>().sprite = shipSprites[playerNumber - 1];
+
+    }
+
     void GameOver(int player)
     {
         Time.timeScale = 0.0f;
@@ -179,6 +241,13 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < playerScores.Length; i++)
             gameOverText.text += playerTextScores[i].text + "\n";
 
-        gameOverPanel.SetActive(true);
+        gameOverPanel.SetActive(true);  
+    }
+
+    public void ResetScene ()
+    {
+        Destroy(instance);
+
+        SceneManager.LoadScene(sceneName);
     }
 }
