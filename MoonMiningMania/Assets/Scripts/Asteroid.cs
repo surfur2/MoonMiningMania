@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Asteroid : MonoBehaviour {
 
     float asteroidVelocity;
     float startingAngle;
     public GameObject particlePrefab;
-    public float points = 1.0f;
     public bool isHooked;
+    public int points = 1;
 
     Rigidbody2D myRigidBody;
 
@@ -41,13 +42,13 @@ public class Asteroid : MonoBehaviour {
 
             if (coll.gameObject.transform.position.x > 0)
             {
-                GameManager.Instance.AddPointsForPlayer(1, (int)points);
                 newParticle.GetComponent<Particle>().InitializeParticle(1);
+                GameManager.Instance.AddPointsForPlayer(1, points);
             }
             else
             {
-                GameManager.Instance.AddPointsForPlayer(2, (int)points);
                 newParticle.GetComponent<Particle>().InitializeParticle(2);
+                GameManager.Instance.AddPointsForPlayer(2, points);
             }
         }
     }
