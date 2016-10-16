@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     public int maxSpeedOfAsteroids;
     public int scoreToWin = 10;
     public Text[] playerTextScores;
+    public GameObject gameOverPanel;
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
         {
             instance = this;
         }
+        gameOverPanel.SetActive(false);
         lastSpawnTime = Time.time;
         asteroids = 0;
         asteroidsGold = 0;
@@ -160,5 +162,12 @@ public class GameManager : MonoBehaviour {
     void GameOver(int player)
     {
         Time.timeScale = 0.0f;
+        Text gameOverText = gameOverPanel.GetComponentInChildren<Text>();
+
+        gameOverText.text = "Player" + player + "'s Side of Earth Prospers Thanks to Their Great Effort: \n";
+        for (int i = 0; i < playerScores.Length; i++)
+            gameOverText.text += playerTextScores[i].text + "\n";
+
+        gameOverPanel.SetActive(true);
     }
 }
