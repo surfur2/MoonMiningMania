@@ -676,6 +676,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 50000011412290214, guid: fbf3d321d6e93b34692dac5927a18fe7,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013202568800, guid: fbf3d321d6e93b34692dac5927a18fe7,
+        type: 2}
+      propertyPath: mySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 09108ea9625e5d0429f9f9554c1c9c01,
+        type: 3}
+    - target: {fileID: 114000013202568800, guid: fbf3d321d6e93b34692dac5927a18fe7,
+        type: 2}
+      propertyPath: acceleration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbf3d321d6e93b34692dac5927a18fe7, type: 2}
   m_IsPrefabParent: 0
