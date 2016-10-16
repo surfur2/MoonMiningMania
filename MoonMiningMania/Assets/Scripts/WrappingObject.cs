@@ -59,6 +59,25 @@ public class WrappingObject : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == "asteroid" && other.gameObject.GetComponent<Asteroid>().isHooked)
+        {
+            return;
+        }
+
+        if (other.tag == "player" && other.gameObject.GetComponent<HookShootScript>().hookState == 2)
+        {
+            Vector3 tetheredAsteroidPosition = other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position;
+            if (side.ToLower() == "minx")
+                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(maxX.transform.position.x - objectBufferOffSet, tetheredAsteroidPosition.y, 0);
+            else if (side.ToLower() == "maxx")
+                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(minX.transform.position.x + objectBufferOffSet, tetheredAsteroidPosition.y, 0);
+            else if (side.ToLower() == "miny")
+                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(tetheredAsteroidPosition.x, maxY.transform.position.y - objectBufferOffSet, 0);
+            else if (side.ToLower() == "maxy")
+                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(tetheredAsteroidPosition.x, minY.transform.position.y + objectBufferOffSet, 0);
+           
+        }
+
         if (side.ToLower() == "minx")
             other.gameObject.transform.position = new Vector3(maxX.transform.position.x - objectBufferOffSet, other.gameObject.transform.position.y, 0);
         else if (side.ToLower() == "maxx")

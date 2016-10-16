@@ -7,6 +7,7 @@ public class Asteroid : MonoBehaviour {
     float startingAngle;
     public GameObject particlePrefab;
     public float points = 1.0f;
+    public bool isHooked;
 
     Rigidbody2D myRigidBody;
 
@@ -16,6 +17,7 @@ public class Asteroid : MonoBehaviour {
         myRigidBody = this.GetComponent<Rigidbody2D>();
         float radians = (Mathf.PI * startingAngle / 180);
         myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * asteroidVelocity, Mathf.Sin(radians) * asteroidVelocity, 0);
+        isHooked = false;
     }
 
     // Update is called once per frame

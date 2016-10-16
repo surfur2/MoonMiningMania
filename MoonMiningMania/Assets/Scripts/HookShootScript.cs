@@ -12,11 +12,11 @@ public class HookShootScript : MonoBehaviour {
 
     private float cooldown;
     private float fireTimer;
-    private int hookState;
+    public int hookState;
     private Vector3 originalHookLocalPosition;
     private SpringJoint2D tether;
 
-    private GameObject hookTarget = null;
+    public GameObject hookTarget = null;
 
     private const int HOOK_IN_CANNON = 0;
     private const int HOOK_FIRING = 1;
@@ -72,6 +72,8 @@ public class HookShootScript : MonoBehaviour {
                     tether.distance = -hook.gameObject.transform.localPosition.y;
 
                     hookTarget = hit.gameObject;
+                    hookTarget.gameObject.GetComponent<Asteroid>().isHooked = true;
+                    hookTarget.gameObject.GetComponent<Rigidbody2D>().mass = .0001f;
                 }
                 else if (fireTimer <= 0)
                 {
@@ -110,6 +112,12 @@ public class HookShootScript : MonoBehaviour {
     {
         hookState = HOOK_RESETTING;
         hook.transform.DOLocalMove(originalHookLocalPosition, EXTENSION_DURATION / 2).OnComplete(setHookToInCannon);
+        if (hookTarget != null)
+        {
+            hookTarget.GetComponent<Asteroid>().isHooked = false;
+            hookTarget = null;
+            hookTarget.gameObject.GetComponent<Rigidbody2D>().mass = 1.0f;
+        }
     }
 
     void setHookToInCannon()
