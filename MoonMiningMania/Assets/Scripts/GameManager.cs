@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     public int maxSpeedOfAsteroids;
     public int scoreToWin = 10;
     public Text[] playerTextScores;
+    public AudioClip scoreSound;
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour {
     private int asteroids;
     private int asteroidsGold;
     private float lastSpawnTime;
+    private AudioSource sound;
    
 	// Use this for initialization
 	void Start () {
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour {
             playerTextScores[i].gameObject.SetActive(true);
             playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
         }
+
+        sound = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -155,6 +159,8 @@ public class GameManager : MonoBehaviour {
         {
             GameOver(player);
         }
+
+        sound.PlayOneShot(scoreSound);
     }
 
     void GameOver(int player)
