@@ -216,6 +216,7 @@ MonoBehaviour:
   timeBetweenAsteroidSpawns: 4
   asteroidPrefab: {fileID: 1000011648706704, guid: 8ae76d32c2c452f46a0b8cbabbc97f56,
     type: 2}
+  asteroidGoldPrefab: {fileID: 0}
   maxSpeedOfAsteroids: 2
   scoreToWin: 10
   playerTextScores:
@@ -617,6 +618,52 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 571108405}
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!1001 &1131348554
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013541692500, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_Name
+      value: AsteroidGold (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1134263858 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000013333596912, guid: c4efaaca361288d4385849079f9c69d4,
@@ -882,6 +929,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 550616072}
   m_RootOrder: 9
+--- !u!1001 &1987976504
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.0484686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.08193878
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010375717236, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3579cd7effe65154c87be899f6921a31, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1999239514
 GameObject:
   m_ObjectHideFlags: 0

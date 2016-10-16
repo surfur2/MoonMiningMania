@@ -9,6 +9,7 @@ public class Asteroid : MonoBehaviour {
     public GameObject particlePrefab;
     public bool isHooked;
     public int points = 1;
+    private GameObject[] newParticles;
 
     Rigidbody2D myRigidBody;
 
@@ -19,6 +20,7 @@ public class Asteroid : MonoBehaviour {
         float radians = (Mathf.PI * startingAngle / 180);
         myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * asteroidVelocity, Mathf.Sin(radians) * asteroidVelocity, 0);
         isHooked = false;
+        newParticles = new GameObject[points];
     }
 
     // Update is called once per frame
@@ -42,12 +44,20 @@ public class Asteroid : MonoBehaviour {
 
             if (coll.gameObject.transform.position.x > 0)
             {
-                newParticle.GetComponent<Particle>().InitializeParticle(1);
+                for(int i = 0; i < points; i++)
+                {
+                    newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+                    newParticles[i].GetComponent<Particle>().InitializeParticle(1);
+                }
                 GameManager.Instance.AddPointsForPlayer(1, points);
             }
             else
             {
-                newParticle.GetComponent<Particle>().InitializeParticle(2);
+                for (int i = 0; i < points; i++)
+                {
+                    newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i*0.1f, 0, 0), Quaternion.identity) as GameObject;
+                    newParticles[i].GetComponent<Particle>().InitializeParticle(2);
+                }
                 GameManager.Instance.AddPointsForPlayer(2, points);
             }
         }
