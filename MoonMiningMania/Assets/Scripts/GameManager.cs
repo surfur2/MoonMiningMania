@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour {
     public Text[] playerTextScores;
     public GameObject gameOverPanel;
     public AudioClip scoreSound;
+    public GameObject startScreen;
+    public GameObject earthGraphic;
+    public GameObject playerPrefab;
+    public Sprite[] shipSprites;
+    public Sprite[] worldSprites;
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -28,6 +33,8 @@ public class GameManager : MonoBehaviour {
     private int asteroidsGold;
     private float lastSpawnTime;
     private AudioSource sound;
+
+    private bool gameStarted = false;
    
 	// Use this for initialization
 	void Start () {
@@ -51,21 +58,34 @@ public class GameManager : MonoBehaviour {
         }
 
         sound = GetComponent<AudioSource>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids != totalNumberOfAsteroids)
+        if (!gameStarted)
         {
-            SpawnAsteroid(false);
-            lastSpawnTime = Time.time;
+            //HANDLE START SCREEN
+            if (Input.GetKeyDown(KeyCode.Alpha2)) StartGame(2);
+            else if (Input.GetKeyDown(KeyCode.Alpha3)) StartGame(3);
         }
-        if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroidsGold != totalNumberOfGoldenAsteroids)
+        else
         {
-            SpawnAsteroid(true);
-            lastSpawnTime = Time.time;
+            //HANDLE ASTEROIDS
+            if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroids != totalNumberOfAsteroids)
+            {
+                SpawnAsteroid(false);
+                lastSpawnTime = Time.time;
+            }
+            if (lastSpawnTime + timeBetweenAsteroidSpawns < Time.time && asteroidsGold != totalNumberOfGoldenAsteroids)
+            {
+                SpawnAsteroid(true);
+                lastSpawnTime = Time.time;
+            }
         }
+
+        
     }
 
     void SpawnAsteroid(bool isGolden)
@@ -163,6 +183,47 @@ public class GameManager : MonoBehaviour {
         }
 
         sound.PlayOneShot(scoreSound);
+    }
+
+    void StartGame(int numPlayers)
+    {
+        startScreen.SetActive(false);
+        gameStarted = true;
+
+        makeShip(1, numPlayers);
+        makeShip(2, numPlayers);
+        if (numPlayers > 2) makeShip(3, numPlayers);
+
+        if (numPlayers == 2) earthGraphic.GetComponent<SpriteRenderer>().sprite = worldSprites[0];
+        else if (numPlayers == 3) earthGraphic.GetComponent<SpriteRenderer>().sprite = worldSprites[1];
+
+
+        //Set up anything else important for the change
+    }
+
+    void makeShip(int playerNumber, int maxPlayers)
+    {
+        //Decide starting position
+        Vector3 playerPosition;
+        if(maxPlayers == 2)
+        {
+            if (playerNumber == 1) playerPosition = new Vector3(-2.5f, 0, 0);
+            else playerPosition = new Vector3(2.5f, 0, 0);
+        }
+        else
+        {
+            if (playerNumber == 1) playerPosition = new Vector3(2, 2, 0);
+            else if (playerNumber == 2) playerPosition = new Vector3(-2, 2, 0);
+            else playerPosition = new Vector3(0, -2.4f, 0);
+        }
+
+        //Make ship
+        GameObject newPlayer = (GameObject)Instantiate(playerPrefab, playerPosition, Quaternion.identity);
+
+        //Set ship by playerNumber
+        newPlayer.GetComponent<Player>().playerString = "_P" + playerNumber;
+        newPlayer.GetComponent<SpriteRenderer>().sprite = shipSprites[playerNumber - 1];
+
     }
 
     void GameOver(int player)
