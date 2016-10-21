@@ -42,12 +42,13 @@ public class Asteroid : MonoBehaviour {
             asteroidOwner = null;
             mySpriteRenderer.color = originalColor;
             gameObject.layer = LayerMask.NameToLayer(asteroid_unscoreable);
+            myRigidBody.drag = 0.0f;
         }
 
-        /*if ( !isHooked && myRigidBody.velocity.magnitude > asteroidVelocity)
-        {
-            myRigidBody.velocity = myRigidBody.velocity - ((-1) * myRigidBody.velocity.normalized * .5f * Time.deltaTime);
-        }*/
+        if ( !isHooked && myRigidBody.velocity.magnitude > asteroidVelocity)
+        {       
+            myRigidBody.drag = .08f;
+        }
     }
 
     public void InitializeAsteroid(float startingAsteroidVel, float startingAsteroidAngle)
