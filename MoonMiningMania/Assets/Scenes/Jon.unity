@@ -890,6 +890,7 @@ MonoBehaviour:
   Max_Speed: 3
   acceleration: 2
   player: 0
+  engineTrail: {fileID: 0}
 --- !u!1 &657371476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1645,7 @@ MonoBehaviour:
   Max_Speed: 3
   acceleration: 2
   player: 0
+  engineTrail: {fileID: 0}
 --- !u!1 &1145118787
 GameObject:
   m_ObjectHideFlags: 0

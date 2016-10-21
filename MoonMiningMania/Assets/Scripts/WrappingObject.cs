@@ -68,23 +68,31 @@ public class WrappingObject : MonoBehaviour {
         {
             Vector3 tetheredAsteroidPosition = other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position;
             if (side.ToLower() == "minx")
-                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(maxX.transform.position.x - objectBufferOffSet, tetheredAsteroidPosition.y, 0);
+                WrapObject(other.gameObject, new Vector3(maxX.transform.position.x - objectBufferOffSet, tetheredAsteroidPosition.y, 0));
             else if (side.ToLower() == "maxx")
-                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(minX.transform.position.x + objectBufferOffSet, tetheredAsteroidPosition.y, 0);
+                WrapObject(other.gameObject, new Vector3(minX.transform.position.x + objectBufferOffSet, tetheredAsteroidPosition.y, 0));
             else if (side.ToLower() == "miny")
-                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(tetheredAsteroidPosition.x, maxY.transform.position.y - objectBufferOffSet, 0);
+                WrapObject(other.gameObject, new Vector3(tetheredAsteroidPosition.x, maxY.transform.position.y - objectBufferOffSet, 0));
             else if (side.ToLower() == "maxy")
-                other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position = new Vector3(tetheredAsteroidPosition.x, minY.transform.position.y + objectBufferOffSet, 0);
+                WrapObject(other.gameObject, new Vector3(tetheredAsteroidPosition.x, minY.transform.position.y + objectBufferOffSet, 0));
            
         }
 
         if (side.ToLower() == "minx")
-            other.gameObject.transform.position = new Vector3(maxX.transform.position.x - objectBufferOffSet, other.gameObject.transform.position.y, 0);
+            WrapObject(other.gameObject, new Vector3(maxX.transform.position.x - objectBufferOffSet, other.gameObject.transform.position.y, 0));
         else if (side.ToLower() == "maxx")
-            other.gameObject.transform.position = new Vector3(minX.transform.position.x + objectBufferOffSet, other.gameObject.transform.position.y, 0);
+            WrapObject(other.gameObject, new Vector3(minX.transform.position.x + objectBufferOffSet, other.gameObject.transform.position.y, 0));
         else if (side.ToLower() == "miny")
-            other.gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, maxY.transform.position.y - objectBufferOffSet, 0);
+            WrapObject(other.gameObject, new Vector3(other.gameObject.transform.position.x, maxY.transform.position.y - objectBufferOffSet, 0));
         else if (side.ToLower() == "maxy")
-            other.gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, minY.transform.position.y + objectBufferOffSet, 0);
+            WrapObject(other.gameObject, new Vector3(other.gameObject.transform.position.x, minY.transform.position.y + objectBufferOffSet, 0));
+    }
+
+    void WrapObject(GameObject wrapMe, Vector3 toHere)
+    {
+        wrapMe.transform.position = toHere;
+
+        //Prevent Engine trail gfx smear from wrap
+        if (wrapMe.tag == "player") wrapMe.GetComponent<Player>().DisableEngineGfx();
     }
 }

@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
 
     //Engine Trail Graphics
     public GameObject engineTrail;
+    private bool enableTrailGfx = true;
+    private const float TRAIL_DISABLE_TIME_FOR_WRAP = 0.2f;
 
     //Start is called at the beginning
     void Start()
@@ -40,12 +42,24 @@ public class Player : MonoBehaviour {
             }
 
             //Player thrusting, enable engine trail
-            engineTrail.SetActive(true);
+            if(enableTrailGfx) engineTrail.SetActive(true);
         }
         else
         {
             //Player not thrusting, disable engine trail
             engineTrail.SetActive(false);
         }
+    }
+
+    public void DisableEngineGfx()
+    {
+        enableTrailGfx = false;
+        engineTrail.SetActive(false);
+        Invoke("ReEnableEngineGfx", TRAIL_DISABLE_TIME_FOR_WRAP);
+    }
+
+    void ReEnableEngineGfx()
+    {
+        enableTrailGfx = true;
     }
 }
