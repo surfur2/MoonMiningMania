@@ -10,7 +10,9 @@ public class Asteroid : MonoBehaviour {
     public bool isHooked;
     public int points = 1;
     public int secondsOfPossession;
-    public Color[] playerColors;
+    public Color highLightColors;
+    public string asteroid_scoreable;
+    public string asteroid_unscoreable;
     private GameObject[] newParticles;
     private Color originalColor;
     private Player asteroidOwner;
@@ -39,6 +41,7 @@ public class Asteroid : MonoBehaviour {
         {
             asteroidOwner = null;
             mySpriteRenderer.color = originalColor;
+            gameObject.layer = LayerMask.NameToLayer(asteroid_unscoreable);
         }
 
         /*if ( !isHooked && myRigidBody.velocity.magnitude > asteroidVelocity)
@@ -61,8 +64,8 @@ public class Asteroid : MonoBehaviour {
         isHooked = true;
         asteroidOwner = player;
         myRigidBody.mass = .0001f;
-        mySpriteRenderer.color = playerColors[player.player - 1];
-        asteroidOwner = player;
+        mySpriteRenderer.color = highLightColors;
+        gameObject.layer = LayerMask.NameToLayer(asteroid_scoreable);
     }
 
     public void ReleasedAsteroid ()
@@ -74,7 +77,7 @@ public class Asteroid : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "Moon")
+        if (coll.gameObject.name == "Moon" && gameObject.layer == LayerMask.NameToLayer(asteroid_scoreable))
         {
             GameObject newParticle = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
 

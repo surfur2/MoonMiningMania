@@ -15,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - asteroid
-  - 
+  - asteroid_scoreable
+  - asteroid_unscoreable
   - 
   - 
   - 

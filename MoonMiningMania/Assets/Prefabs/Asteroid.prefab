@@ -23,7 +23,7 @@ GameObject:
   - 114: {fileID: 114000011654087974}
   - 50: {fileID: 50000012001798390}
   - 60: {fileID: 60000010907592226}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Asteroid
   m_TagString: asteroid
   m_Icon: {fileID: 0}
@@ -117,6 +117,8 @@ MonoBehaviour:
   - {r: 0.08235294, g: 0.3647059, b: 0.8, a: 1}
   - {r: 0.8, g: 0.08235294, b: 0.08235294, a: 1}
   - {r: 1, g: 0.972549, b: 0.2, a: 1}
+  asteroid_scoreable: 8
+  asteroid_unscoreable: 9
   releaseTime: 0
 --- !u!212 &212000012945397606
 SpriteRenderer:
