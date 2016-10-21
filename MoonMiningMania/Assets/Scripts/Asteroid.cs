@@ -79,20 +79,21 @@ public class Asteroid : MonoBehaviour {
     {
         if (coll.gameObject.name == "Moon" && gameObject.layer == LayerMask.NameToLayer(asteroid_scoreable))
         {
+            Destroy(gameObject, 0f);
+
+            if (points == 3)
+            {
+                GameManager.Instance.asteroidsGold--;
+                GameManager.Instance.lastDestroyedTimeGold = Time.time;
+            }
+
             GameObject newParticle = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
 
             if (GameManager.Instance.players == 2)
                 if (coll.gameObject.transform.position.x > 0)
                 //if (asteroidOwner.player == 1) Uncomment for asteroid possesion scoring
                 {
-                    Destroy(gameObject, 0f);
-
-                    if (points == 3)
-                    {
-                        GameManager.Instance.asteroidsGold--;
-                        GameManager.Instance.lastDestroyedTimeGold = Time.time;
-                    }
-
+                   
                     for (int i = 0; i < points; i++)
                     {
                         newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
@@ -103,15 +104,7 @@ public class Asteroid : MonoBehaviour {
                 //else if (asteroidOwner.player == 2) Uncomment for asteroid possesion scoring
                 else
                 {
-                    Destroy(gameObject, 0f);
-
-                    if (points == 3)
-                    {
-                        GameManager.Instance.asteroidsGold--;
-                        GameManager.Instance.lastDestroyedTimeGold = Time.time;
-                    }
-
-
+                 
                     for (int i = 0; i < points; i++)
                     {
                         newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i*0.1f, 0, 0), Quaternion.identity) as GameObject;
@@ -121,9 +114,10 @@ public class Asteroid : MonoBehaviour {
                 }
             else if (GameManager.Instance.players == 3)
             {
-                //if (coll.gameObject.transform.position.y <= -.87)
-                if (asteroidOwner.player == 1)
+                if (coll.gameObject.transform.position.y <= -.87)
+               // if (asteroidOwner.player == 1) Uncomment for player possesion of asteroids
                 {
+                 
                     for (int i = 0; i < points; i++)
                     {
                         newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
@@ -131,9 +125,10 @@ public class Asteroid : MonoBehaviour {
                     }
                     GameManager.Instance.AddPointsForPlayer(3, points);
                 }
-                //else if (coll.gameObject.transform.position.x < 0)
-                else if (asteroidOwner.player == 2)
+                else if (coll.gameObject.transform.position.x < 0)
+                //else if (asteroidOwner.player == 2) //Uncomment for player possesion of asteroids
                 {
+                    
                     for (int i = 0; i < points; i++)
                     {
                         newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i * 0.1f, 0, 0), Quaternion.identity) as GameObject;
@@ -141,9 +136,10 @@ public class Asteroid : MonoBehaviour {
                     }
                     GameManager.Instance.AddPointsForPlayer(2, points);
                 }
-                //else if (coll.gameObject.transform.position.x >= 0)
-                else if (asteroidOwner.player == 3)
+                else if (coll.gameObject.transform.position.x >= 0)
+                // else if (asteroidOwner.player == 3) Uncomment for player possesion of asteroids
                 {
+                   
                     for (int i = 0; i < points; i++)
                     {
                         newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i * 0.1f, 0, 0), Quaternion.identity) as GameObject;
