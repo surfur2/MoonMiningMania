@@ -13,7 +13,7 @@ public class HookShootScript : MonoBehaviour {
     private float cooldown;
     private float fireTimer;
     public int hookState;
-    public string playerString;
+    public Player myPlayer;
     private Vector3 originalHookLocalPosition;
     private SpringJoint2D tether;
 
@@ -38,6 +38,7 @@ public class HookShootScript : MonoBehaviour {
 
     void Start () {
         cooldown = 0;
+        myPlayer = GetComponent<Player>();
         hookState = HOOK_IN_CANNON;
         originalHookLocalPosition = hook.transform.localPosition;
         tether = GetComponent<SpringJoint2D>();
@@ -54,7 +55,7 @@ public class HookShootScript : MonoBehaviour {
         switch (hookState)
         {
             case (HOOK_IN_CANNON):
-                if (cooldown <= 0 && Input.GetAxisRaw("Fire1" + playerString) == -1 || Input.GetButtonDown("Fire1" + playerString))
+                if (cooldown <= 0 && Input.GetAxisRaw("Fire1_P" + myPlayer.player) == -1 || Input.GetButtonDown("Fire1_P" + myPlayer.player))
                 {
                     cooldown = GRAPPLE_COOLDOWN;
                     hookState = HOOK_FIRING;
@@ -81,8 +82,7 @@ public class HookShootScript : MonoBehaviour {
                     tether.distance = -hook.gameObject.transform.localPosition.y;
 
                     hookTarget = hit.gameObject;
-                    hookTarget.gameObject.GetComponent<Asteroid>().isHooked = true;
-                    hookTarget.gameObject.GetComponent<Rigidbody2D>().mass = .0001f;
+                    hookTarget.GetComponent<Asteroid>().HookedAsteroid(myPlayer);
 
                     sound.PlayOneShot(hookGrabSound);
                 }
@@ -98,11 +98,8 @@ public class HookShootScript : MonoBehaviour {
                 line.SetPosition(1, hookEnd.transform.position);
 
                 //Listen for disconnect or asteroid destruction
-                if (cooldown <= 0 && (Input.GetAxisRaw("Fire1" + playerString) == -1 || Input.GetButtonDown("Fire1" + playerString) || hookTarget == null))
+                if (cooldown <= 0 && (Input.GetAxisRaw("Fire1_P" + myPlayer.player) == -1 || Input.GetButtonDown("Fire1_P" + myPlayer.player) || hookTarget == null))
                 {
-                    tether.enabled = false;
-                    tether.connectedBody = null;
-
                     resetHook();
                 }
                 else
@@ -119,14 +116,15 @@ public class HookShootScript : MonoBehaviour {
     
 	}
 
-    void resetHook()
+    public void resetHook()
     {
+        tether.enabled = false;
+        tether.connectedBody = null;
         hookState = HOOK_RESETTING;
         hook.transform.DOLocalMove(originalHookLocalPosition, EXTENSION_DURATION / 2).OnComplete(setHookToInCannon);
         if (hookTarget != null)
         {
-            hookTarget.GetComponent<Asteroid>().isHooked = false;
-            hookTarget.gameObject.GetComponent<Rigidbody2D>().mass = 1.0f;
+            hookTarget.GetComponent<Asteroid>().ReleasedAsteroid();
             hookTarget = null;
         }
 

@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     Vector3 playerDirection;
     public float Max_Speed = 5.0f;
     public float acceleration;
-    public string playerString;
+    public int player;
     private Rigidbody2D rgb2d; // Used for moving the charcter
 
     //Start is called at the beginning
@@ -18,15 +18,15 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal" + playerString) == 1)
+        if (Input.GetAxisRaw("Horizontal_P" + player) == 1)
         {
             transform.Rotate(new Vector3(0, 0, -5));
         }
-        if (Input.GetAxisRaw("Horizontal" + playerString) == -1)
+        if (Input.GetAxisRaw("Horizontal_P" + player) == -1)
         {
             transform.Rotate(new Vector3(0, 0, +5));
         }
-        if (Input.GetAxisRaw("Vertical" + playerString) == 1)
+        if (Input.GetAxisRaw("Vertical_P" + player) == 1)
         {
             if (rgb2d.velocity.magnitude <= Max_Speed)
                 rgb2d.velocity += new Vector2(transform.up.x * Time.deltaTime * acceleration, transform.up.y * Time.deltaTime * acceleration);

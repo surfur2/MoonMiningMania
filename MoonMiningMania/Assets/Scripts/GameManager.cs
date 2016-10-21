@@ -226,8 +226,7 @@ public class GameManager : MonoBehaviour {
         GameObject newPlayer = (GameObject)Instantiate(playerPrefab, playerPosition, Quaternion.identity);
 
         //Set ship by playerNumber
-        newPlayer.GetComponent<Player>().playerString = "_P" + playerNumber;
-        newPlayer.GetComponent<HookShootScript>().playerString = "_P" + playerNumber;
+        newPlayer.GetComponent<Player>().player = playerNumber;
         newPlayer.GetComponent<SpriteRenderer>().sprite = shipSprites[playerNumber - 1];
 
     }
