@@ -145,7 +145,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000013963512596}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   EXTENSION_LENGTH: 2
   EXTENSION_DURATION: 0.25
   hookState: 0
-  playerString: _P1
+  myPlayer: {fileID: 0}
   hookTarget: {fileID: 0}
   hookStart: {fileID: 1000011722897590}
   hookLine: {fileID: 1000010404924364}
@@ -295,9 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2562234bc21bb7746986b09fd707193e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Speed: 3
-  acceleration: 2
-  playerString: _P1
+  Max_Speed: 3.5
+  acceleration: 8.5
+  player: 0
 --- !u!120 &120000013929873270
 LineRenderer:
   m_ObjectHideFlags: 1
