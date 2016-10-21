@@ -162,10 +162,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Smash Asteroid into the moon while its above your flag to collect points!\n\n\nKeyboard:\nP1
-    - A + D to steer, W to thrust, LeftCtrl to grapple\nP2 - Left + Right to steer,
-    Up to thrust, RightCtrl to grapple\nP3 - J + L to steer, I to thrust, Space to
-    grapple\n "
+  m_Text: "Smash Asteroid into the moon while its above your flag to collect points!\n\nFirst
+    player to get 10 points wins!\n\nKeyboard:\nP1 - A + D to steer, W to thrust,
+    LeftCtrl to grapple\nP2 - Left + Right to steer, Up to thrust, RightCtrl to grapple\nP3
+    - J + L to steer, I to thrust, Space to grapple\n "
 --- !u!222 &180993744
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -569,6 +569,11 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013946376914, guid: d9057f92fb06e8b418d64ef91019b2cb,
+        type: 2}
+      propertyPath: SECONDS_FOR_REVOLUTION
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9057f92fb06e8b418d64ef91019b2cb, type: 2}
   m_IsPrefabParent: 0
@@ -769,7 +774,7 @@ MonoBehaviour:
   EXTENSION_LENGTH: 2
   EXTENSION_DURATION: 0.25
   hookState: 0
-  playerString: _P2
+  myPlayer: {fileID: 0}
   hookTarget: {fileID: 0}
   hookStart: {fileID: 1352832011}
   hookLine: {fileID: 1397777950}
@@ -884,7 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Max_Speed: 3
   acceleration: 2
-  playerString: _P2
+  player: 0
 --- !u!1 &657371476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,7 +1528,7 @@ MonoBehaviour:
   EXTENSION_LENGTH: 2
   EXTENSION_DURATION: 0.25
   hookState: 0
-  playerString: _P1
+  myPlayer: {fileID: 0}
   hookTarget: {fileID: 0}
   hookStart: {fileID: 882036937}
   hookLine: {fileID: 1884553220}
@@ -1638,7 +1643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Max_Speed: 3
   acceleration: 2
-  playerString: _P1
+  player: 0
 --- !u!1 &1145118787
 GameObject:
   m_ObjectHideFlags: 0
