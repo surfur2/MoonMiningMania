@@ -9,6 +9,9 @@ public class Player : MonoBehaviour {
     public int player;
     private Rigidbody2D rgb2d; // Used for moving the charcter
 
+    //Engine Trail Graphics
+    public GameObject engineTrail;
+
     //Start is called at the beginning
     void Start()
     {
@@ -35,6 +38,14 @@ public class Player : MonoBehaviour {
                 Vector2 newVelocity = rgb2d.velocity + new Vector2(transform.up.x * Time.deltaTime * acceleration, transform.up.y * Time.deltaTime * acceleration);
                 rgb2d.velocity = newVelocity.normalized * Max_Speed;
             }
+
+            //Player thrusting, enable engine trail
+            engineTrail.SetActive(true);
+        }
+        else
+        {
+            //Player not thrusting, disable engine trail
+            engineTrail.SetActive(false);
         }
     }
 }
