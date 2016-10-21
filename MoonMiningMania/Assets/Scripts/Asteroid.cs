@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class Asteroid : MonoBehaviour {
 
-    float asteroidVelocity;
+    float MAX_VELOCITY;
+    public float MAX_VEL_DRAG;
     float startingAngle;
     public GameObject particlePrefab;
     public bool isHooked;
@@ -28,7 +29,7 @@ public class Asteroid : MonoBehaviour {
         myRigidBody = this.GetComponent<Rigidbody2D>();
         mySpriteRenderer = this.GetComponent<SpriteRenderer>();
         float radians = (Mathf.PI * startingAngle / 180);
-        myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * asteroidVelocity, Mathf.Sin(radians) * asteroidVelocity, 0);
+        myRigidBody.velocity = new Vector3(Mathf.Cos(radians) * MAX_VELOCITY, Mathf.Sin(radians) * MAX_VELOCITY, 0);
         isHooked = false;
         newParticles = new GameObject[points];
         asteroidOwner = null;
@@ -45,15 +46,16 @@ public class Asteroid : MonoBehaviour {
             myRigidBody.drag = 0.0f;
         }
 
-        if ( !isHooked && myRigidBody.velocity.magnitude > asteroidVelocity)
+        // If the asteroid is going to fast, slow it down progressivly
+        if ( !isHooked && myRigidBody.velocity.magnitude > MAX_VELOCITY)
         {       
-            myRigidBody.drag = .08f;
+            myRigidBody.drag = MAX_VEL_DRAG;
         }
     }
 
     public void InitializeAsteroid(float startingAsteroidVel, float startingAsteroidAngle)
     {
-        asteroidVelocity =startingAsteroidVel;
+        MAX_VELOCITY =startingAsteroidVel;
         startingAngle = startingAsteroidAngle;
     }
 
