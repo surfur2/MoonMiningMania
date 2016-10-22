@@ -61,7 +61,7 @@ public class Asteroid : MonoBehaviour {
 
     public void HookedAsteroid (Player player)
     {
-        if (asteroidOwner != null)
+        if (asteroidOwner != null && asteroidOwner != player)
             asteroidOwner.GetComponent<HookShootScript>().resetHook();
 
         isHooked = true;
