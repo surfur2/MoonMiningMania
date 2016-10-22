@@ -1447,6 +1447,16 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: 284
       objectReference: {fileID: 0}
+    - target: {fileID: 224000011715752470, guid: c4efaaca361288d4385849079f9c69d4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -304
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013037231582, guid: c4efaaca361288d4385849079f9c69d4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -303
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4efaaca361288d4385849079f9c69d4, type: 2}
   m_IsPrefabParent: 0
@@ -2641,7 +2651,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291, y: -333}
+  m_AnchoredPosition: {x: -291, y: -332}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753388291
@@ -2656,7 +2666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2699,7 +2709,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &1753388292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2922,7 +2932,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ea5da31cc083ba14cb935ecf71ca01cd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.273
   m_Pitch: 1
   Loop: 1
   Mute: 0
