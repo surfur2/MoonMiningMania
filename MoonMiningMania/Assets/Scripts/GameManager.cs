@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour {
     public string sceneName;
     [HideInInspector]
     public int players;
-
+    [HideInInspector]
+    public static bool isMute;
 
     private int[] playerScores;
     private float minSpawnLocationAsteroid = .1f;
@@ -46,6 +47,8 @@ public class GameManager : MonoBehaviour {
    
 	// Use this for initialization
 	void Start () {
+        isMute = false;
+
         if (instance != null && instance != this)
             Destroy(this.gameObject);
         else
