@@ -1,0 +1,10 @@
+diff a/MoonMiningMania/Assets/Prefabs/Player.prefab b/MoonMiningMania/Assets/Prefabs/Player.prefab	(rejected hunks)
+@@ -591,7 +591,7 @@
+   m_AutoUVMaxDistance: 0.5
+   m_AutoUVMaxAngle: 89
+   m_LightmapParameters: {fileID: 0}
+-  m_SortingLayerID: 0
++  m_SortingLayerID: 175673941
+   m_SortingOrder: 2
+   m_Sprite: {fileID: 21300000, guid: 09108ea9625e5d0429f9f9554c1c9c01, type: 3}
+   m_Color: {r: 1, g: 1, b: 1, a: 1}
