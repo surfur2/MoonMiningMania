@@ -72,7 +72,6 @@ public class HookShootScript : MonoBehaviour {
 
                 fireTimer -= Time.deltaTime;
                 hook.gameObject.transform.localPosition = new Vector3(hook.gameObject.transform.localPosition.x, -EXTENSION_LENGTH * (1 - fireTimer/EXTENSION_DURATION), hook.gameObject.transform.localPosition.z);
-                //Collider2D hit = Physics2D.OverlapPoint(new Vector2(hook.gameObject.transform.position.x, hook.gameObject.transform.position.y), (1 << LayerMask.NameToLayer("asteroid_unscoreable") | 1 << LayerMask.NameToLayer("asteroid_scoreable")) );
                 Collider2D hit = Physics2D.OverlapBox(new Vector2(hook.gameObject.transform.position.x, hook.gameObject.transform.position.y), new Vector2(HOOK_GRAB_WIDTH, HOOK_GRAB_WIDTH), 0, (1 << LayerMask.NameToLayer("asteroid_unscoreable") | 1 << LayerMask.NameToLayer("asteroid_scoreable")));
 
                 if (hit)
