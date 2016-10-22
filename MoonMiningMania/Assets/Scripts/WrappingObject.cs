@@ -64,19 +64,21 @@ public class WrappingObject : MonoBehaviour {
             return;
         }
 
+        // This block checks if we need to wrap a asteroid with the player if it is hooked
         if (other.tag == "player" && other.gameObject.GetComponent<HookShootScript>().hookState == 2)
         {
             Vector3 tetheredAsteroidPosition = other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject.transform.position;
+            GameObject tetheredAsteroid = other.gameObject.GetComponent<HookShootScript>().hookTarget.gameObject;
             if (side.ToLower() == "minx")
-                WrapObject(other.gameObject, new Vector3(maxX.transform.position.x - objectBufferOffSet, tetheredAsteroidPosition.y, 0));
+                WrapObject(tetheredAsteroid, new Vector3(maxX.transform.position.x - objectBufferOffSet, tetheredAsteroidPosition.y, 0));
             else if (side.ToLower() == "maxx")
-                WrapObject(other.gameObject, new Vector3(minX.transform.position.x + objectBufferOffSet, tetheredAsteroidPosition.y, 0));
+                WrapObject(tetheredAsteroid, new Vector3(minX.transform.position.x + objectBufferOffSet, tetheredAsteroidPosition.y, 0));
             else if (side.ToLower() == "miny")
-                WrapObject(other.gameObject, new Vector3(tetheredAsteroidPosition.x, maxY.transform.position.y - objectBufferOffSet, 0));
+                WrapObject(tetheredAsteroid, new Vector3(tetheredAsteroidPosition.x, maxY.transform.position.y - objectBufferOffSet, 0));
             else if (side.ToLower() == "maxy")
-                WrapObject(other.gameObject, new Vector3(tetheredAsteroidPosition.x, minY.transform.position.y + objectBufferOffSet, 0));
-           
+                WrapObject(tetheredAsteroid, new Vector3(tetheredAsteroidPosition.x, minY.transform.position.y + objectBufferOffSet, 0));     
         }
+
 
         if (side.ToLower() == "minx")
             WrapObject(other.gameObject, new Vector3(maxX.transform.position.x - objectBufferOffSet, other.gameObject.transform.position.y, 0));

@@ -99,7 +99,7 @@ public class Asteroid : MonoBehaviour {
                    
                     for (int i = 0; i < points; i++)
                     {
-                        newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i * 0.1f, 0, 0), Quaternion.identity) as GameObject;
                         newParticles[i].GetComponent<Particle>().InitializeParticle(1);
                     }
                     GameManager.Instance.AddPointsForPlayer(1, points);
@@ -123,7 +123,7 @@ public class Asteroid : MonoBehaviour {
                  
                     for (int i = 0; i < points; i++)
                     {
-                        newParticles[i] = Instantiate(particlePrefab, this.transform.position, Quaternion.identity) as GameObject;
+                        newParticles[i] = Instantiate(particlePrefab, this.transform.position + new Vector3(i * 0.1f, 0, 0), Quaternion.identity) as GameObject;
                         newParticles[i].GetComponent<Particle>().InitializeParticle(3);
                     }
                     GameManager.Instance.AddPointsForPlayer(3, points);

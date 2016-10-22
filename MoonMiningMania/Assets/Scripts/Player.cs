@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    Vector3 playerDirection;
     public float Max_Speed = 5.0f;
     public float acceleration;
     public int player;
@@ -18,7 +17,6 @@ public class Player : MonoBehaviour {
     void Start()
     {
         rgb2d = GetComponent<Rigidbody2D>();
-        playerDirection = new Vector3(0.0f, 1.0f, 0.0f);
     }
 
     void Update()
