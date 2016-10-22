@@ -249,9 +249,9 @@ MonoBehaviour:
 
     Keyboard:
 
-    P1 - A + D to steer, W to thrust, LeftCtrl to grapple
+    P1 - A + D to steer, W to thrust, C to grapple
 
-    P2 - Left + Right to steer, Up to thrust, RightCtrl to grapple
+    P2 - Left + Right to steer, Up to thrust, / to grapple
 
     P3 - J + L to steer, I to thrust, Space to grapple
 
