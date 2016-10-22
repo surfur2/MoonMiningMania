@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public int maxSpeedOfAsteroids;
     public int scoreToWin = 10;
     public Text[] playerTextScores;
+    public Text totalScoreToWin;
     public GameObject gameOverPanel;
     public AudioClip scoreSound;
     public GameObject startScreen;
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1.0f;
 
         sound = GetComponent<AudioSource>();
-
 	}
 	
 	// Update is called once per frame
@@ -202,7 +202,8 @@ public class GameManager : MonoBehaviour {
             playerTextScores[i].text = "Player " + (i + 1) + " Score: 0";
         }
 
-
+        totalScoreToWin.text = "Score to Win: " + scoreToWin;
+        totalScoreToWin.gameObject.SetActive(true);
         //Set up anything else important for the change
     }
 

@@ -113,7 +113,7 @@ MonoBehaviour:
     type: 2}
   isHooked: 0
   points: 1
-  secondsOfPossession: 1
+  secondsOfPossession: 2
   highLightColors: {r: 1, g: 1, b: 1, a: 1}
   asteroid_scoreable: asteroid_scoreable
   asteroid_unscoreable: asteroid_unscoreable

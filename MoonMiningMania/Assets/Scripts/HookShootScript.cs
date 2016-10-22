@@ -106,7 +106,8 @@ public class HookShootScript : MonoBehaviour {
                 }
                 else
                 {
-                    hook.transform.position = hookTarget.transform.position;
+                    if (hookTarget != null)
+                        hook.transform.position = hookTarget.transform.position;
                 }
                 break;
             case (HOOK_RESETTING):
